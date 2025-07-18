@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel de Comissão</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: linear-gradient(
+        90deg,
+        rgba(238, 60, 60, 0.7),
+        rgba(248, 200, 0, 0.7),
+        rgba(238, 60, 60, 0.7),
+        rgba(0, 181, 226, 0.7)
+      );
+      text-align: center;
+      padding: 60px 20px;
+      margin-bottom: 20px;
+    }
+
+    header img {
+      max-height: 80px;
+    }
+
+    .linha {
+      padding: 25px;
+      text-align: center;
+      font-size: 18px;
+      cursor: default;
+    }
+
+    .linha.drilldown {
+      cursor: pointer;
+    }
+
+    .linha.drilldown:hover {
+        border-left: 4px solid rgba(238, 60, 60, 0.7);
+        filter: brightness(1.1);
+        cursor: pointer;
+    }
+
+
+    .linha-1 { background-color: #252525; color: #fff; }
+    .linha-2, .linha-3, .linha-5, .linha-6 { background-color: #fff; color: #000; }
+    .linha-4 { background-color: #223B9C; color: #fff; font-weight: bold; }
+    .linha-7 { background-color: #184B22; color: #fff; }
+
+    .linha-1 b, .linha-7 b { font-weight: bold; }
+    .linha-1 span, .linha-7 span { font-weight: normal; }
+
+    .sublinhas {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .sublinhas.ativa {
+      max-height: 1000px;
+    }
+
+    .sub {
+      background-color: #BFBFBF;
+      border-top: 1px solid #ddd;
+      padding-left: 60px;
+      font-size: 16px;
+      text-align: start;
+    }
+
+    .sub.sub2 { padding-left: 90px; background-color: #D8D8D8; }
+    .sub.sub3 { padding-left: 130px; background-color: #EFEFEF; }
+    .sub.sub4 { padding-left: 170px; background-color: #F6F6F6; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://assets.decocache.com/brandili/dded91e8-cab2-4a22-bdd7-ee715d06ae10/1742493176669-7ece0680-65ff-49ed-ac5a-e7f20436b085" alt="Logo Brandili">
+  </header>
+
+  <!-- LINHAS PRINCIPAIS -->
+  <div class="linha linha-1 drilldown" onclick="toggle('sublinhas-comissao')">
+    <b>Comissão do mês (média 7,2%):</b> <span>R$ 100.000,00</span>
+  </div>
+
+  <!-- SUBLINHAS COMISSÃO -->
+  <div class="sublinhas" id="sublinhas-comissao">
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-evento')"><b>Por evento:</b> R$ 100.000,00</div>
+    <div class="sublinhas" id="sublinhas-evento">
+        <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-faturamento')"><b>Faturamento:</b> R$ 60.000,00</div>
+        <div class="sublinhas" id="sublinhas-faturamento">
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-fatprep1')"><b>Preposto 1:</b> R$ 40.000,00</div>
+            <div class="sublinhas" id="sublinhas-fatprep1">
+                <div class="linha sub sub4"><b>NF 123456 parcela 1 de 3:</b> R$ 10.000,00.</div>
+                <div class="linha sub sub4"><b>NF 123456 parcela 2 de 3:</b> R$ 10.000,00.</div>
+                <div class="linha sub sub4"><b>NF 123456 parcela 2 de 3:</b> R$ 10.000,00.</div>
+                <div class="linha sub sub4"><b>NF 222222 parcela 1 de 1:</b> R$ 10.000,00.</div>
+            </div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-fatprep2')"><b>Preposto 2:</b> R$ 20.000,00</div>
+            <div class="sublinhas" id="sublinhas-fatprep2">
+                <div class="linha sub sub4"><b>NF 989898 parcela 1 de 2:</b> R$ 10.000,00.</div>
+                <div class="linha sub sub4"><b>NF 989898 parcela 2 de 2:</b> R$ 10.000,00.</div>
+            </div>
+        </div>
+        <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-liquidacao')"><b>Liquidação:</b> R$ 40.000,00</div>
+        <div class="sublinhas" id="sublinhas-liquidacao">
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-liqprep1')"><b>Preposto 1:</b> R$ 15.000,00</div>
+            <div class="sublinhas" id="sublinhas-liqprep1">
+                <div class="linha sub sub4"><b>NF 999999 parcela 1 de 3:</b> R$ 5.000,00.</div>
+                <div class="linha sub sub4"><b>NF 777777 parcela 5 de 8:</b> R$ 7.000,00.</div>
+                <div class="linha sub sub4"><b>NF 141414 parcela 2 de 3:</b> R$ 3.000,00.</div>
+            </div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-liqprep2')"><b>Preposto 2:</b> R$ 25.000,00</div>
+            <div class="sublinhas" id="sublinhas-liqprep2">
+                <div class="linha sub sub4"><b>NF 333333 parcela 1 de 2:</b> R$ 20.000,00.</div>
+                <div class="linha sub sub4"><b>NF 363636 parcela 4 de 4:</b> R$ 5.000,00.</div>
+            </div>
+        </div>
+    </div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-canal')"><b>Por canal de venda:</b> R$ 100.000,00</div>
+    <div class="sublinhas" id="sublinhas-canal">
+        <div class="linha sub sub2"><b>Representante:</b> R$ 80.000,00</div>
+        <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-b2b')"><b>B2B:</b> R$ 10.000,00</div>
+        <div class="sublinhas" id="sublinhas-b2b">
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-b2bprep1')"><b>Preposto 1:</b> R$ 10.000,00</div>
+            <div class="sublinhas" id="sublinhas-b2bprep1">
+                <div class="linha sub sub4"><b>NF 777777 parcela 5 de 8:</b> R$ 7.000,00.</div>
+                <div class="linha sub sub4"><b>NF 141414 parcela 2 de 3:</b> R$ 3.000,00.</div>
+            </div>
+        </div>
+        <div class="linha sub sub2"><b>Inside Sales:</b> R$ 10.000,00</div>
+    </div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-ramo')"><b>Por ramo de atividade:</b> R$ 100.000,00</div>
+        <div class="sublinhas" id="sublinhas-ramo">
+            <div class="linha sub sub2"><b>Varejo Multimarca:</b> R$ 80.000,00</div>
+            <div class="linha sub sub2"><b>Atacado:</b> R$ 10.000,00</div>
+            <div class="linha sub sub2"><b>Etc ... :</b> R$ 10.000,00</div>
+        </div>
+  </div>
+
+  <!-- LINHAS INTERMEDIÁRIAS -->
+  <div class="linha linha-2"><b>(+) Acréscimos:</b> R$ 5.000,00</div>
+  <div class="linha linha-3"><b>(-) Descontos:</b> R$ 10.000,00</div>
+  <div class="linha linha-4">Valor para emissão da NF: R$ 95.000,00</div>
+  <div class="linha linha-5"><b>(-) Imposto de renda:</b> R$ 500,00</div>
+
+  <!-- LINHA COM DÉBITOS -->
+  <div class="linha linha-6 drilldown" onclick="toggle('sublinhas-debitos')">
+    <b>(-) Débitos:</b> R$ 1.000,00
+  </div>
+
+  <!-- SUBLINHAS DÉBITOS -->
+  <div class="sublinhas" id="sublinhas-debitos">
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-deb')"><b>Débitos:</b> R$ 1.000,00</div>
+    <div class="sublinhas" id="sublinhas-deb">
+        <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-compras')"><b>Compras:</b> R$ 800,00</div>
+        <div class="sublinhas" id="sublinhas-compras">
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-compprep1')"><b>Preposto 1:</b> R$ 800,00</div>
+            <div class="sublinhas" id="sublinhas-compprep1">
+                <div class="linha sub sub4"><b>NF 191919 parcela 2 de 5:</b> R$ 800,00.</div>
+            </div>
+        </div>
+        <div class="linha sub sub2"><b>Reparcelamentos (CFD):</b> R$ 200,00</div>
+    </div>
+  </div>
+
+  <div class="linha linha-7"><b>Valor a receber:</b> <span>R$ 93.500,00</span></div>
+
+  <script>
+    function toggle(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('ativa');
+    }
+  </script>
+
+</body>
+</html>
