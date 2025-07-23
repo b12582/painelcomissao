@@ -84,7 +84,7 @@
   </header>
 
   <!-- LINHAS PRINCIPAIS -->
-  <div class="linha linha-1 drilldown" onclick="toggle('sublinhas-comissao')">
+  <div title="Total de comissão relacionada às vendas faturadas e liquidadas no mês." class="linha linha-1 drilldown" onclick="toggle('sublinhas-comissao')">
     <b>Comissão do mês (média 7,2%):</b> <span>R$ 100.000,00</span>
   </div>
 
@@ -92,7 +92,7 @@
   <div class="sublinhas" id="sublinhas-comissao">
     <div class="linha sub drilldown" onclick="toggle('sublinhas-evento')"><b>Por evento:</b> R$ 100.000,00</div>
     <div class="sublinhas" id="sublinhas-evento">
-        <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-faturamento')"><b>Faturamento:</b> R$ 60.000,00</div>
+        <div title="Comissão relacionada à pedidos FATURADOS pela Brandili no mês." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-faturamento')"><b>Faturamento (média 8%):</b> R$ 60.000,00</div>
         <div class="sublinhas" id="sublinhas-faturamento">
             <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-fatprep1')"><b>Preposto 1:</b> R$ 40.000,00</div>
             <div class="sublinhas" id="sublinhas-fatprep1">
@@ -107,7 +107,7 @@
                 <div class="linha sub sub4"><b>NF 989898 parcela 2 de 2:</b> R$ 10.000,00.</div>
             </div>
         </div>
-        <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-liquidacao')"><b>Liquidação:</b> R$ 40.000,00</div>
+        <div title="Comissão relacionada à parcelas quitadas pelos CLIENTES no mês." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-liquidacao')"><b>Liquidação (média 6%):</b> R$ 40.000,00</div>
         <div class="sublinhas" id="sublinhas-liquidacao">
             <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-liqprep1')"><b>Preposto 1:</b> R$ 15.000,00</div>
             <div class="sublinhas" id="sublinhas-liqprep1">
@@ -124,8 +124,8 @@
     </div>
     <div class="linha sub drilldown" onclick="toggle('sublinhas-canal')"><b>Por canal de venda:</b> R$ 100.000,00</div>
     <div class="sublinhas" id="sublinhas-canal">
-        <div class="linha sub sub2"><b>Representante:</b> R$ 80.000,00</div>
-        <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-b2b')"><b>B2B:</b> R$ 10.000,00</div>
+        <div title="Comissão relacionada à vendas feitas diretamente pelo REPRESENTANTE." class="linha sub sub2"><b>Representante (média 7,5%):</b> R$ 80.000,00</div>
+        <div title="Comissão relacionada ao auto atendimento, feito pelo CLIENTE, no canal digital B2B." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-b2b')"><b>B2B (média 7%):</b> R$ 10.000,00</div>
         <div class="sublinhas" id="sublinhas-b2b">
             <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-b2bprep1')"><b>Preposto 1:</b> R$ 10.000,00</div>
             <div class="sublinhas" id="sublinhas-b2bprep1">
@@ -133,24 +133,40 @@
                 <div class="linha sub sub4"><b>NF 141414 parcela 2 de 3:</b> R$ 3.000,00.</div>
             </div>
         </div>
-        <div class="linha sub sub2"><b>Inside Sales:</b> R$ 10.000,00</div>
+        <div title="Comissão relacionada à vendas feitas pela equipe interna da BRANDILI." class="linha sub sub2"><b>Inside Sales (média 7%):</b> R$ 10.000,00</div>
     </div>
-    <div class="linha sub drilldown" onclick="toggle('sublinhas-ramo')"><b>Por ramo de atividade:</b> R$ 100.000,00</div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-ramo')"><b>Por segmento:</b> R$ 100.000,00</div>
         <div class="sublinhas" id="sublinhas-ramo">
-            <div class="linha sub sub2"><b>Varejo Multimarca:</b> R$ 80.000,00</div>
-            <div class="linha sub sub2"><b>Atacado:</b> R$ 10.000,00</div>
-            <div class="linha sub sub2"><b>Etc ... :</b> R$ 10.000,00</div>
+            <div title="" class="linha sub sub2"><b>Varejo Multimarca (média 7,6%):</b> R$ 80.000,00</div>
+            <div class="linha sub sub2"><b>Atacado (média 7,1%):</b> R$ 10.000,00</div>
+            <div class="linha sub sub2"><b>Etc ... (média x%) :</b> R$ 10.000,00</div>
+        </div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-marca')"><b>Por marca:</b> R$ 100.000,00</div>
+        <div class="sublinhas" id="sublinhas-marca">
+            <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-brand')"><b>Brandili (média 7,4%):</b> R$ 70.000,00</div>
+            <div class="sublinhas" id="sublinhas-brand">
+              <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-brandvar')"><b>Varejo Multimarca</b> R$ 60.000,00</div>
+              <div class="sublinhas" id="sublinhas-brandvar">
+                <div class="linha sub sub4"><b>Preposto 1:</b> R$ 45.000,00.</div>
+                <div class="linha sub sub4"><b>Preposto 2:</b> R$ 15.000,00.</div>
+              </div>
+              <div class="linha sub sub3"><b>Atacado</b> R$ 7.000,00</div> 
+              <div class="linha sub sub3"><b>Etc ...</b> R$ 3.000,00</div> 
+            </div>
+            <div class="linha sub sub2"><b>Mundi (média 7,4%):</b> R$ 20.000,00</div>
+            <div class="linha sub sub2"><b>Essendi (média 7,1%):</b> R$ 5.000,00</div>
+            <div class="linha sub sub2"><b>Etc ... (média x%) :</b> R$ 5.000,00</div>
         </div>
   </div>
 
   <!-- LINHAS INTERMEDIÁRIAS -->
-  <div class="linha linha-2"><b>(+) Acréscimos:</b> R$ 5.000,00</div>
-  <div class="linha linha-3"><b>(-) Descontos:</b> R$ 10.000,00</div>
-  <div class="linha linha-4">Valor para emissão da NF: R$ 95.000,00</div>
-  <div class="linha linha-5"><b>(-) Imposto de renda:</b> R$ 500,00</div>
+  <div title="Acertos de política da comissão, recuperação de clientes inadimplentes e outros acréscimos." class="linha linha-2"><b>(+) Acréscimos:</b> R$ 5.000,00</div>
+  <div title="Mostruários, reparcelamentos de dívidas, clientes em inadimplemento e outros descontos." class="linha linha-3"><b>(-) Descontos:</b> R$ 10.000,00</div>
+  <div title="Valor exato para você emitir a sua nota fiscal." class="linha linha-4">Valor para emissão da NF: R$ 95.000,00</div>
+  <div title="O IRRF é calculado com taxa de 1,5% sobre o valor total da nota fiscal." class="linha linha-5"><b>(-) Imposto de renda:</b> R$ 500,00</div>
 
   <!-- LINHA COM DÉBITOS -->
-  <div class="linha linha-6 drilldown" onclick="toggle('sublinhas-debitos')">
+  <div title="Dívidas em aberto com a Brandili, com vencimento no mês ou atrasadas." class="linha linha-6 drilldown" onclick="toggle('sublinhas-debitos')">
     <b>(-) Débitos:</b> R$ 1.000,00
   </div>
 
@@ -169,7 +185,7 @@
     </div>
   </div>
 
-  <div class="linha linha-7"><b>Valor a receber:</b> <span>R$ 93.500,00</span></div>
+  <div title="Valor líquido a receber." class="linha linha-7"><b>Valor a receber:</b> <span>R$ 93.500,00</span></div>
 
   <script>
     function toggle(id) {
