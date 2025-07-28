@@ -75,6 +75,7 @@
     .sub.sub2 { padding-left: 90px; background-color: #D8D8D8; }
     .sub.sub3 { padding-left: 130px; background-color: #EFEFEF; }
     .sub.sub4 { padding-left: 170px; background-color: #F6F6F6; }
+    .sub.sub5 { padding-left: 210px; background-color: #ffffff; }
   </style>
 </head>
 <body>
@@ -85,77 +86,115 @@
 
   <!-- LINHAS PRINCIPAIS -->
   <div title="Total de comissão relacionada às vendas faturadas e liquidadas no mês." class="linha linha-1 drilldown" onclick="toggle('sublinhas-comissao')">
-    <b>Comissão do mês (média 7,2%):</b> <span>R$ 100.000,00</span>
+    <b>Comissão do mês (comissão média 7,2%):</b> <span>R$ 100.000,00</span>
   </div>
 
   <!-- SUBLINHAS COMISSÃO -->
   <div class="sublinhas" id="sublinhas-comissao">
-    <div class="linha sub drilldown" onclick="toggle('sublinhas-evento')"><b>Por evento:</b> R$ 100.000,00</div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-evento')"><b>Por evento (comissão média 7,2%):</b> R$ 100.000,00</div>
     <div class="sublinhas" id="sublinhas-evento">
-        <div title="Comissão relacionada à pedidos FATURADOS pela Brandili no mês." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-faturamento')"><b>Faturamento (média 8%):</b> R$ 60.000,00</div>
+        <div title="Comissão relacionada à pedidos FATURADOS pela Brandili no mês." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-faturamento')"><b>Faturamento (comissão média 8%):</b> R$ 60.000,00</div>
         <div class="sublinhas" id="sublinhas-faturamento">
-            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-fatprep1')"><b>Preposto 1:</b> R$ 40.000,00</div>
-            <div class="sublinhas" id="sublinhas-fatprep1">
-                <div class="linha sub sub4"><b>NF 123456 parcela 1 de 3:</b> R$ 10.000,00.</div>
-                <div class="linha sub sub4"><b>NF 123456 parcela 2 de 3:</b> R$ 10.000,00.</div>
-                <div class="linha sub sub4"><b>NF 123456 parcela 2 de 3:</b> R$ 10.000,00.</div>
-                <div class="linha sub sub4"><b>NF 222222 parcela 1 de 1:</b> R$ 10.000,00.</div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-fatmarca1')"><b>Brandili (comissão média 7,2%):</b> R$ 50.000,00</div>
+            <div class="sublinhas" id="sublinhas-fatmarca1">
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-marca1prep1')"><b>Preposto 1 (comissão média 7,2%):</b> R$ 35.000,00</div>
+              <div class="sublinhas" id="sublinhas-marca1prep1">
+                  <div class="linha sub sub5"><b>NF 123456 parcela 1 de 3:</b> R$ 10.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 123456 parcela 2 de 3:</b> R$ 10.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 123456 parcela 2 de 3:</b> R$ 10.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 222222 parcela 1 de 1:</b> R$ 5.000,00.</div>
+              </div>
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-marca1prep2')"><b>Preposto 2 (comissão média 7,2%):</b> R$ 15.000,00</div>
+              <div class="sublinhas" id="sublinhas-marca1prep2">
+                  <div class="linha sub sub5"><b>NF 989898 parcela 1 de 2:</b> R$ 7.500,00.</div>
+                  <div class="linha sub sub5"><b>NF 989898 parcela 2 de 2:</b> R$ 7.500,00.</div>
+              </div>
             </div>
-            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-fatprep2')"><b>Preposto 2:</b> R$ 20.000,00</div>
-            <div class="sublinhas" id="sublinhas-fatprep2">
-                <div class="linha sub sub4"><b>NF 989898 parcela 1 de 2:</b> R$ 10.000,00.</div>
-                <div class="linha sub sub4"><b>NF 989898 parcela 2 de 2:</b> R$ 10.000,00.</div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-fatmarca2')"><b>Essendi (comissão média 7,2%):</b> R$ 10.000,00</div>
+            <div class="sublinhas" id="sublinhas-fatmarca2">
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-marca2prep1')"><b>Preposto 1 (comissão média 7,2%):</b> R$ 8.000,00</div>
+              <div class="sublinhas" id="sublinhas-marca2prep1">
+                  <div class="linha sub sub5"><b>NF 123456 parcela 1 de 2:</b> R$ 4.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 123456 parcela 2 de 2:</b> R$ 4.000,00.</div>
+              </div>
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-marca2prep2')"><b>Preposto 2 (comissão média 7,2%):</b> R$ 2.000,00</div>
+              <div class="sublinhas" id="sublinhas-marca2prep2">
+                  <div class="linha sub sub5"><b>NF 989898 parcela 1 de 1:</b> R$ 2.000,00.</div>
+              </div>
             </div>
         </div>
-        <div title="Comissão relacionada à parcelas quitadas pelos CLIENTES no mês." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-liquidacao')"><b>Liquidação (média 6%):</b> R$ 40.000,00</div>
+        <div title="Comissão relacionada à parcelas quitadas pelos CLIENTES no mês." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-liquidacao')"><b>Liquidação (comissão média 6%):</b> R$ 40.000,00</div>
         <div class="sublinhas" id="sublinhas-liquidacao">
-            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-liqprep1')"><b>Preposto 1:</b> R$ 15.000,00</div>
-            <div class="sublinhas" id="sublinhas-liqprep1">
-                <div class="linha sub sub4"><b>NF 999999 parcela 1 de 3:</b> R$ 5.000,00.</div>
-                <div class="linha sub sub4"><b>NF 777777 parcela 5 de 8:</b> R$ 7.000,00.</div>
-                <div class="linha sub sub4"><b>NF 141414 parcela 2 de 3:</b> R$ 3.000,00.</div>
-            </div>
-            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-liqprep2')"><b>Preposto 2:</b> R$ 25.000,00</div>
-            <div class="sublinhas" id="sublinhas-liqprep2">
-                <div class="linha sub sub4"><b>NF 333333 parcela 1 de 2:</b> R$ 20.000,00.</div>
-                <div class="linha sub sub4"><b>NF 363636 parcela 4 de 4:</b> R$ 5.000,00.</div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-liqmarca1')"><b>Brandili (comissão média 7,2%):</b> R$ 40.000,00</div>
+            <div class="sublinhas" id="sublinhas-liqmarca1">
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-liqprep1')"><b>Preposto 1 (comissão média 7,2%):</b> R$ 15.000,00</div>
+              <div class="sublinhas" id="sublinhas-liqprep1">
+                  <div class="linha sub sub5"><b>NF 999999 parcela 1 de 3:</b> R$ 5.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 777777 parcela 5 de 8:</b> R$ 7.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 141414 parcela 2 de 3:</b> R$ 3.000,00.</div>
+              </div>
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-liqprep2')"><b>Preposto 2 (comissão média 7,2%):</b> R$ 25.000,00</div>
+              <div class="sublinhas" id="sublinhas-liqprep2">
+                  <div class="linha sub sub5"><b>NF 333333 parcela 1 de 2:</b> R$ 20.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 363636 parcela 4 de 4:</b> R$ 5.000,00.</div>
+              </div>
             </div>
         </div>
     </div>
-    <div class="linha sub drilldown" onclick="toggle('sublinhas-canal')"><b>Por canal de venda:</b> R$ 100.000,00</div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-canal')"><b>Por canal de venda (comissão média 7,2%):</b> R$ 100.000,00</div>
     <div class="sublinhas" id="sublinhas-canal">
-        <div title="Comissão relacionada à vendas feitas diretamente pelo REPRESENTANTE." class="linha sub sub2"><b>Representante (média 7,5%):</b> R$ 80.000,00</div>
-        <div title="Comissão relacionada ao auto atendimento, feito pelo CLIENTE, no canal digital B2B." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-b2b')"><b>B2B (média 7%):</b> R$ 10.000,00</div>
+        <div title="Comissão relacionada à vendas feitas diretamente pelo REPRESENTANTE." class="linha sub sub2"><b>Representante (comissão média 7,5%):</b> R$ 80.000,00</div>
+        <div title="Comissão relacionada ao auto atendimento, feito pelo CLIENTE, no canal digital B2B." class="linha sub sub2 drilldown" onclick="toggle('sublinhas-b2b')"><b>B2B (comissão média 7%):</b> R$ 10.000,00</div>
         <div class="sublinhas" id="sublinhas-b2b">
-            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-b2bprep1')"><b>Preposto 1:</b> R$ 10.000,00</div>
-            <div class="sublinhas" id="sublinhas-b2bprep1">
-                <div class="linha sub sub4"><b>NF 777777 parcela 5 de 8:</b> R$ 7.000,00.</div>
-                <div class="linha sub sub4"><b>NF 141414 parcela 2 de 3:</b> R$ 3.000,00.</div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-b2bmarca1')"><b>Brandili (comissão média 7,2%):</b> R$ 8.000,00</div>
+            <div class="sublinhas" id="sublinhas-b2bmarca1">
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-b2bmarca1prep1')"><b>Preposto 1 (comissão média 7,2%):</b> R$ 8.000,00</div>
+              <div class="sublinhas" id="sublinhas-b2bmarca1prep1">
+                  <div class="linha sub sub5"><b>NF 777777 parcela 5 de 8:</b> R$ 6.000,00.</div>
+                  <div class="linha sub sub5"><b>NF 141414 parcela 2 de 3:</b> R$ 2.000,00.</div>
+              </div>
+            </div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-b2bmarca2')"><b>Essendi (comissão média 7,2%):</b> R$ 2.000,00</div>
+            <div class="sublinhas" id="sublinhas-b2bmarca2">
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-b2bmarca2prep1')"><b>Preposto 1 (comissão média 7,2%):</b> R$ 1.000,00</div>
+              <div class="sublinhas" id="sublinhas-b2bmarca2prep1">
+                  <div class="linha sub sub5"><b>NF 777777 parcela 5 de 8:</b> R$ 1.000,00.</div>
+              </div>
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-b2bmarca2prep2')"><b>Preposto 2 (comissão média 7,2%):</b> R$ 1.000,00</div>
+              <div class="sublinhas" id="sublinhas-b2bmarca2prep2">
+                  <div class="linha sub sub5"><b>NF 777777 parcela 5 de 8:</b> R$ 1.000,00.</div>
+              </div>
             </div>
         </div>
-        <div title="Comissão relacionada à vendas feitas pela equipe interna da BRANDILI." class="linha sub sub2"><b>Inside Sales (média 7%):</b> R$ 10.000,00</div>
+        <div title="Comissão relacionada à vendas feitas pela equipe interna da BRANDILI." class="linha sub sub2"><b>Inside Sales (comissão média 7%):</b> R$ 10.000,00</div>
     </div>
-    <div class="linha sub drilldown" onclick="toggle('sublinhas-ramo')"><b>Por segmento:</b> R$ 100.000,00</div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-ramo')"><b>Por segmento (comissão média 7,2%):</b> R$ 100.000,00</div>
         <div class="sublinhas" id="sublinhas-ramo">
-            <div title="" class="linha sub sub2"><b>Varejo Multimarca (média 7,6%):</b> R$ 80.000,00</div>
-            <div class="linha sub sub2"><b>Atacado (média 7,1%):</b> R$ 10.000,00</div>
-            <div class="linha sub sub2"><b>Etc ... (média x%) :</b> R$ 10.000,00</div>
+            <div title="" class="linha sub sub2"><b>Varejo Multimarca (comissão média 7,6%):</b> R$ 80.000,00</div>
+            <div class="linha sub sub2"><b>Atacado (comissão média 7,1%):</b> R$ 10.000,00</div>
+            <div class="linha sub sub2"><b>Etc ... (comissão média x%) :</b> R$ 10.000,00</div>
         </div>
-    <div class="linha sub drilldown" onclick="toggle('sublinhas-marca')"><b>Por marca:</b> R$ 100.000,00</div>
+    <div class="linha sub drilldown" onclick="toggle('sublinhas-marca')"><b>Por marca (comissão média 7,2%):</b> R$ 100.000,00</div>
         <div class="sublinhas" id="sublinhas-marca">
-            <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-brand')"><b>Brandili (média 7,4%):</b> R$ 70.000,00</div>
+            <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-brand')"><b>Brandili (comissão média 7,4%):</b> R$ 70.000,00</div>
             <div class="sublinhas" id="sublinhas-brand">
-              <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-brandvar')"><b>Varejo Multimarca</b> R$ 60.000,00</div>
+              <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-brandvar')"><b>Varejo Multimarca (comissão média 7,2%)</b> R$ 60.000,00</div>
               <div class="sublinhas" id="sublinhas-brandvar">
-                <div class="linha sub sub4"><b>Preposto 1:</b> R$ 45.000,00.</div>
-                <div class="linha sub sub4"><b>Preposto 2:</b> R$ 15.000,00.</div>
+                <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-brandvarprep1')"><b>Preposto 1 (comissão média 7,2%):</b> R$ 45.000,00</div>
+                <div class="sublinhas" id="sublinhas-brandvarprep1">
+                  <div class="linha sub sub5"><b>NF 777777 parcela 5 de 8:</b> R$ 45.000,00.</div>
+                </div>
+                <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-brandvarprep2')"><b>Preposto 2 (comissão média 7,2%):</b> R$ 15.000,00</div>
+                <div class="sublinhas" id="sublinhas-brandvarprep2">
+                  <div class="linha sub sub5"><b>NF 777777 parcela 5 de 8:</b> R$ 15.000,00.</div>
+                </div>
               </div>
               <div class="linha sub sub3"><b>Atacado</b> R$ 7.000,00</div> 
               <div class="linha sub sub3"><b>Etc ...</b> R$ 3.000,00</div> 
             </div>
-            <div class="linha sub sub2"><b>Mundi (média 7,4%):</b> R$ 20.000,00</div>
-            <div class="linha sub sub2"><b>Essendi (média 7,1%):</b> R$ 5.000,00</div>
-            <div class="linha sub sub2"><b>Etc ... (média x%) :</b> R$ 5.000,00</div>
+            <div class="linha sub sub2"><b>Mundi (comissão média 7,4%):</b> R$ 20.000,00</div>
+            <div class="linha sub sub2"><b>Essendi (comissão média 7,1%):</b> R$ 5.000,00</div>
+            <div class="linha sub sub2"><b>Etc ... (comissão média x%) :</b> R$ 5.000,00</div>
         </div>
   </div>
 
@@ -176,9 +215,19 @@
     <div class="sublinhas" id="sublinhas-deb">
         <div class="linha sub sub2 drilldown" onclick="toggle('sublinhas-compras')"><b>Compras:</b> R$ 800,00</div>
         <div class="sublinhas" id="sublinhas-compras">
-            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-compprep1')"><b>Preposto 1:</b> R$ 800,00</div>
-            <div class="sublinhas" id="sublinhas-compprep1">
-                <div class="linha sub sub4"><b>NF 191919 parcela 2 de 5:</b> R$ 800,00.</div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-compmarca1')"><b>Brandili:</b> R$ 600,00</div>
+            <div class="sublinhas" id="sublinhas-compmarca1">
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-compmarca1prep1')"><b>Preposto 1:</b> R$ 600,00</div>
+              <div class="sublinhas" id="sublinhas-compmarca1prep1">
+                  <div class="linha sub sub5"><b>NF 191919 parcela 2 de 5:</b> R$ 600,00.</div>
+              </div>
+            </div>
+            <div class="linha sub sub3 drilldown" onclick="toggle('sublinhas-compmarca2')"><b>Essendi:</b> R$ 200,00</div>
+            <div class="sublinhas" id="sublinhas-compmarca2">
+              <div class="linha sub sub4 drilldown" onclick="toggle('sublinhas-compmarca2prep1')"><b>Preposto 1:</b> R$ 200,00</div>
+              <div class="sublinhas" id="sublinhas-compmarca2prep1">
+                  <div class="linha sub sub5"><b>NF 191919 parcela 2 de 5:</b> R$ 200,00.</div>
+              </div>
             </div>
         </div>
         <div class="linha sub sub2"><b>Reparcelamentos (CFD):</b> R$ 200,00</div>
