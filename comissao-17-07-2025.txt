@@ -1,0 +1,121 @@
+https://docs.google.com/presentation/d/16_vYfn70sGZPj-jPeCkLCRbuCdlLXVghkODbwPUdMng/edit?slide=id.g2ec4815f354_0_106#slide=id.g2ec4815f354_0_106
+
+
+CONTEXTO
+
+	No Salesforce, o representante pode consultar informações sobre a sua comissão.
+	Hoje essas informações são separadas por mês e mostradas da seguinte maneira:
+
+- Valor de faturamento;
+- Valor de liquidação;
+- Acréscimo de comissão;
+- Estorno de comissão;
+- Valor total nota fiscal;
+- Canal multimarca;
+- Canal B2B;
+- Canal televendas;
+- Imposto de renda;
+- Usuário;
+- Desconto de duplicata.
+
+	Foram observados alguns problemas nesse modelo:
+
+- A ordem, em que os valores aparecem, é confusa;
+- O representante não sabe exatamente o quanto ele vai receber, e a equipe interna também tem dificuldades para explicar;
+- O "desconto de duplicatas" mistura os mostruários (que desconta da NF) com débitos financeiros (que descontam somente no momento do pagamento efetivamente);
+- A descrição de alguns campos não está clara (canal multimarca, usuário, desconto de duplicata...).
+
+	Por isso, a ideia é implementar as seguintes melhorias nessa apresentação:
+
+I. BACK-END
+
+1. Adaptações nas views
+
+	Foram criadas as views abaixo:
+
+	a) SF_VW_TITULO_COMISSAO (view): para consultar os lançamentos de comissão em geral;
+	b) SF_VW_DUPLICATA_COMISSAO (view): para consultar os débitos do representante, i.e., tudo o que existe "contra" o representante no contas a receber da Brandili;
+	c) SF_REPRESENTANTE_COMISSAO_TOT (view): deve ser usada para a tela "principal" da comissão. O objetivo desse view é mostrar o resumo da comissão do representante (ou seja, o "nível 0" do drilldown);
+	d) SF_REPRESENTANTE_COMISSAO (mview): deve ser usada para o Drilldown.
+
+	Obs.: os scripts das views estão no anexo Views.rar.
+
+2. Atualizar MView SF_REPRESENTANTE_COMISSAO
+
+	Preparar o LN para atualizar a mview SF_REPRESENTANTE_COMISSAO ao executar a sessão de integração LN x FV/SF.
+
+
+
+II. API
+
+1. Adaptar API para as novas views
+
+	Usar o arquivo anexo Queries-guia.sql para adaptar a API.
+	Os nívels -4 (preposto) e -5 (NF) devem conter as mesmas informações que já contém hoje (como detalhes como o nome do preposto, vencimento da NF, etc).
+
+2. Percentual médio de comissão
+
+	Adicionar o percentual médio de comissão ao texto, somente na opção "Comissão do mês", exceto no nível -5.
+	Para isso, deve-se calcular um "avg" (average) do campo SF_REPRESENTANTE_COMISSAO.percentualcomissao.
+	O percentual deve ser concatenado, entre parênteses, junto ao texto. Por exemplo:
+
+	- Nível 0 = Comissão do mês (comissão média 7,2%) -> SF_REPRESENTANTE_COMISSAO_TOT.descricaotipo + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO_TOT.percentualcomissao) + "%)";
+	- Nível -1 = Por evento (comissão média 7,2%) -> SF_REPRESENTANTE_COMISSAO.drilldown1 + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO.percentualcomissao) + "%)";
+	- Nível -2 = Faturamento (comissão média 8%) -> SF_REPRESENTANTE_COMISSAO.drilldown2 + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO.percentualcomissao) + "%)";
+	- Nível -3 = Brandili (comissão média 7%) -> SF_REPRESENTANTE_COMISSAO.drilldown3 + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO.percentualcomissao) + "%)";
+	- Nível -3 = Essendi (comissão média 9%) -> SF_REPRESENTANTE_COMISSAO.drilldown3 + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO.percentualcomissao) + "%)";
+	- Nível -4 = Preposto 1 (comissão média 7,5%) -> SF_REPRESENTANTE_COMISSAO.drilldown4 + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO.percentualcomissao) + "%)";
+	- Nível -4 = Preposto 2 (comissão média 8,5%) -> SF_REPRESENTANTE_COMISSAO.drilldown4 + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO.percentualcomissao) + "%)";
+	- Nível -2 = Liquidação (comissão média 6%) -> SF_REPRESENTANTE_COMISSAO.drilldown2 + "(comissão média " + avg(SF_REPRESENTANTE_COMISSAO.percentualcomissao) + "%)";
+	...
+
+	Isso já está tratada nas queries de exemplo no arquivo Queries-guia.sql.
+
+
+
+II. FRON-END
+
+1. Apresentação no Salesforce
+
+	Na tela do Salesforce, os valores devem ser apresentados da seguinte maneira (resumo, "nível 0" do drilldown):
+
+- Comissão do mês (média x%): somar apenas os valores dos tipos "provisão de faturamento" e "provisão de liquidação". Apresentar, no label, o percentual médio de comissão sobre o valor faturado. Destacar esse campo na cor cinza, se possível;
+- (+) Acréscimos: somar apenas os valores do tipo "valor adicional";
+- (-) Descontos: somar os valores dos tipos "desconto de comissão" e "estorno de comissão";
+- Valor para emissão da NF: aqui deve-se somar os três valores anteriores. Destacar esse campo na cor azul, se possível (como já é feito hoje);
+- (-) Imposto de renda: valor da NF multiplicado pela taxa do IRRF (1,5%);
+- (-) Débitos: valores que o representante tem em aberto, com vencimento para o mês de referência, no contas a receber da Brandili;
+- Valor a receber: valor da NF subtraindo-se o imposto de renda e os débitos. Destacar esse campo na cor verde, se possível.
+
+	Obs.: consultar o PROTÓTIPO, clicando aqui (https://b12582.github.io/painelcomissao/), para visualizar como deve ficar a apresentação das informações.
+
+2. Drilldown
+
+	Hoje o representante já consegue consultar um "drilldown" dos valores. Ou seja, expandir mais detalhes, em camadas, até chegar no nível da nota fiscal.
+	O novo Drilldown terá até 6 níveis (se possível, colorir cada nível com diferentes tons de cinza, para deixar a visualização facilitada).
+	Usar o seguinte guia de cores:
+
+	Nível 0, Comissão do mês: #252525 (para o background) e #FFFFFF para a fonte;
+	Nível 0, Valor para emissão da NF: #223B9C (para o background) e #FFFFFF para a fonte;
+	Nível 0, Valor a receber: #184B22 (para o background) e #FFFFFF para a fonte;
+	Nível 0, todos os outros: #FFFFFF (para o background) e #000000 para a fonte;
+	Nível -1: #BFBFBF (para o background) e #000000 para a fonte;
+	Nível -2: #D8D8D8 (para o background) e #000000 para a fonte;
+	Nível -3: #EFEFEF (para o background) e #000000 para a fonte;
+	Nível -4: #F6F6F6 (para o background) e #000000 para a fonte;
+	Nível -5: #FFFFFF (para o background) e #000000 para a fonte;
+
+3. "hint" no mouse hover
+
+	Ao posicionar o mouse sobre um item, se possível, deve-se exibir um "hint" (no HTML, por exemplo, isso pode ser feito adicionando o texto ao atributo "title" do elemento).
+	Para o nível 0, o hint pode ser obtido em SF_REPRESENTANTE_COMISSAO_TOT.hintdd0.
+	Já para os demais níveis, o hint pode ser obtido em SF_REPRESENTANTE_COMISSAO.hintddx (sendo "x" o número do nível, por exemplo: hintdd1, hintdd2, etc).
+
+
+
+
+OBSERVAÇÕES IMPORTANTES
+
+	A) Consultar o PROTÓTIPO, clicando aqui (https://b12582.github.io/painelcomissao/), para visualizar como deve ficar a apresentação das informações;
+	B) Consultar o arquivo Drilldown-guia.txt para melhor entendimento dos níveis;
+	C) Consultar o arquivo Queries-guia.sql para entender como as views devem ser consultadas para montar cada "nível" do drilldown.
